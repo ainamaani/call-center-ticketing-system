@@ -1,8 +1,14 @@
 package org.pahappa.systems.ticketing.views;
 
+<<<<<<< Updated upstream
+=======
+import org.pahappa.systems.ticketing.constants.TicketStatus;
+import org.pahappa.systems.ticketing.models.Ticket;
+>>>>>>> Stashed changes
 import org.pahappa.systems.ticketing.services.TicketService;
 import org.pahappa.systems.ticketing.services.impl.TicketServiceImpl;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class TicketView implements BaseTicketView {
@@ -58,10 +64,47 @@ public class TicketView implements BaseTicketView {
         }
     }
 
+
+
     @Override
     public void createTicket() {
 
+<<<<<<< Updated upstream
+=======
+        System.out.println("Enter the ticket category:");
+        String category = scanner.nextLine();
+        ticket.setCategory(category);
+
+        System.out.println("Enter the customer name:");
+        String customer = scanner.nextLine();
+        ticket.setCustomer(customer);
+
+        System.out.println("Enter the issue description:");
+        String issue = scanner.nextLine();
+        ticket.setIssue(issue);
+
+        boolean validStatus = false;
+        while (!validStatus) {
+            System.out.println("Enter the ticket status (OPEN, INPROGRESS, or RESOLVED):");
+            String statusInput = scanner.nextLine();
+
+            try {
+                TicketStatus status = TicketStatus.valueOf(statusInput.toUpperCase());
+                ticket.setStatus(status.name());
+                validStatus = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid status. Please try again.");
+            }
+        }
+
+        System.out.println("Enter the priority level:");
+        String priorityLevel = scanner.nextLine();
+        ticket.setPriorityLevel(priorityLevel);
+
+        ticketService.createTicket(ticket);
+>>>>>>> Stashed changes
     }
+
 
     @Override
     public void getAllTickets() {
@@ -80,6 +123,6 @@ public class TicketView implements BaseTicketView {
 
     @Override
     public void deleteTicket() {
-
     }
+
 }
