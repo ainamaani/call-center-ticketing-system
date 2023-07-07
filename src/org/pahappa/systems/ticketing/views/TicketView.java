@@ -5,6 +5,7 @@ import org.pahappa.systems.ticketing.models.Ticket;
 import org.pahappa.systems.ticketing.services.TicketService;
 import org.pahappa.systems.ticketing.services.impl.TicketServiceImpl;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class TicketView implements BaseTicketView {
@@ -99,7 +100,22 @@ public class TicketView implements BaseTicketView {
 
     @Override
     public void getAllTickets() {
+        List<Ticket> tickets = ticketService.getAllTickets();
 
+        if (tickets.isEmpty()) {
+            System.out.println("No tickets found.");
+        } else {
+            System.out.println("All Tickets:");
+            for (Ticket ticket : tickets) {
+                System.out.println("Ticket ID: " + ticket.getId());
+                System.out.println("Category: " + ticket.getCategory());
+                System.out.println("Customer: " + ticket.getCustomer());
+                System.out.println("Issue: " + ticket.getIssue());
+                System.out.println("Status: " + ticket.getStatus());
+                System.out.println("Priority Level: " + ticket.getPriorityLevel());
+                System.out.println("--------------------------");
+            }
+        }
     }
 
     @Override
