@@ -120,8 +120,38 @@ public class TicketView implements BaseTicketView {
 
     @Override
     public void getTicketsOfStatus() {
+        boolean validStatus = false;
+        TicketStatus status = null;
+        while (!validStatus) {
+            System.out.println("Enter the ticket status (OPEN, INPROGRESS, or RESOLVED):");
+            String statusInput = scanner.nextLine();
 
+            try {
+                status = TicketStatus.valueOf(statusInput.toUpperCase());
+                validStatus = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid status. Please try again.");
+            }
+        }
+
+        List<Ticket> tickets = ticketService.getTicketsOfStatus(status);
+
+        if (tickets.isEmpty()) {
+            System.out.println("No tickets found with the specified status.");
+        } else {
+            System.out.println("Tickets with status " + status.name() + ":");
+            for (Ticket ticket : tickets) {
+                System.out.println("Ticket ID: " + ticket.getId());
+                System.out.println("Category: " + ticket.getCategory());
+                System.out.println("Customer: " + ticket.getCustomer());
+                System.out.println("Issue: " + ticket.getIssue());
+                System.out.println("Status: " + ticket.getStatus());
+                System.out.println("Priority Level: " + ticket.getPriorityLevel());
+                System.out.println("--------------------------");
+            }
+        }
     }
+
 
     @Override
     public void updateTicket() {

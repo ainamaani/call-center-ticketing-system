@@ -32,7 +32,13 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> getTicketsOfStatus(TicketStatus ticketStatus) {
-        return null;
+        List<Ticket> filteredTickets = new ArrayList<>();
+        for (Ticket ticket : ticketList) {
+            if (ticket.getStatus().equals(ticketStatus.name())) {
+                filteredTickets.add(ticket);
+            }
+        }
+        return filteredTickets;
     }
 
     @Override
