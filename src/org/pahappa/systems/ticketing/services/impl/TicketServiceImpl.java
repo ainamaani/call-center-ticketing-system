@@ -43,9 +43,19 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public void updateTicket(Ticket updatedTicket) {
-
+        for (Ticket ticket : ticketList) {
+            if (ticket.getId() == updatedTicket.getId()) {
+                ticket.setCategory(updatedTicket.getCategory());
+                ticket.setCustomer(updatedTicket.getCustomer());
+                ticket.setIssue(updatedTicket.getIssue());
+                ticket.setStatus(updatedTicket.getStatus());
+                ticket.setPriorityLevel(updatedTicket.getPriorityLevel());
+                System.out.println("Ticket updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Ticket not found.");
     }
-
     @Override
     public void deleteTicket(int index) {
 

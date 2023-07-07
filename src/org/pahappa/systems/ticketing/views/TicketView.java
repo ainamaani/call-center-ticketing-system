@@ -155,8 +155,56 @@ public class TicketView implements BaseTicketView {
 
     @Override
     public void updateTicket() {
+        System.out.println("Enter the ID of the ticket you want to update:");
+        long ticketId = scanner.nextLong();
+        scanner.nextLine(); // Consume the newline character
 
+        Ticket ticketToUpdate = null;
+        for (Ticket ticket : ticketService.getAllTickets()) {
+            if (ticket.getId() == ticketId) {
+                ticketToUpdate = ticket;
+                break;
+            }
+        }
+
+        if (ticketToUpdate == null) {
+            System.out.println("Ticket not found.");
+            return;
+        }
+
+        System.out.println("Enter the updated ticket category:");
+        String category = scanner.nextLine();
+        ticketToUpdate.setCategory(category);
+
+        System.out.println("Enter the updated customer name:");
+        String customer = scanner.nextLine();
+        ticketToUpdate.setCustomer(customer);
+
+        System.out.println("Enter the updated issue description:");
+        String issue = scanner.nextLine();
+        ticketToUpdate.setIssue(issue);
+
+        boolean validStatus = false;
+        while (!validStatus) {
+            System.out.println("Enter the ticket status (OPEN, INPROGRESS, or RESOLVED):");
+            String statusInput = scanner.nextLine();
+
+            try {
+                TicketStatus status = TicketStatus.valueOf(statusInput.toUpperCase());
+                ticketToUpdate.setStatus(status.name());
+                validStatus = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid status. Please try again.");
+            }
+        }
+
+        System.out.println("Enter the updated priority level:");
+        String priorityLevel = scanner.nextLine();
+        ticketToUpdate.setPriorityLevel(priorityLevel);
+
+        ticketService.updateTicket(ticketToUpdate);
     }
+
 
     @Override
     public void deleteTicket() {
