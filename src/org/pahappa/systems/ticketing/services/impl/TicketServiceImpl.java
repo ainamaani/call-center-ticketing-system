@@ -57,7 +57,15 @@ public class TicketServiceImpl implements TicketService {
         System.out.println("Ticket not found.");
     }
     @Override
-    public void deleteTicket(int index) {
-
+    public void deleteTicket(int ticketId) {
+        for (Ticket ticket : ticketList) {
+            if (ticket.getId() == ticketId) {
+                ticketList.remove(ticket);
+                System.out.println("Ticket deleted successfully.");
+                return;
+            }
+        }
+        System.out.println("Ticket not found.");
     }
+
 }

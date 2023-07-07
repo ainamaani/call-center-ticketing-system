@@ -208,6 +208,10 @@ public class TicketView implements BaseTicketView {
 
     @Override
     public void deleteTicket() {
+        System.out.println("Enter the ID of the ticket you want to delete:");
+        int ticketId = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
 
+        ticketService.deleteTicket(ticketId);
     }
 }
