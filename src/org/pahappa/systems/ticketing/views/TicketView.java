@@ -32,7 +32,18 @@ public class TicketView implements BaseTicketView {
             System.out.println("6. Exit");
             System.out.println();
 
-            int choice = scanner.nextInt();
+            int choice = 0;
+            boolean validChoice = false;
+            while (!validChoice) {
+                System.out.print("Please choose the operation to be executed: ");
+                if (scanner.hasNextInt()) { //checking if the input is an integer and can be consumed
+                    choice = scanner.nextInt(); //consuming the integer entered by the user
+                    validChoice = true;
+                } else {
+                    System.out.println("Invalid input. Please enter a number that matches the operation you have chosen.");
+                    scanner.nextLine(); // Consume the invalid input
+                }
+            }
             scanner.nextLine(); // Consume the newline character
 
             switch (choice) {
