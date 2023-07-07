@@ -1,14 +1,10 @@
 package org.pahappa.systems.ticketing.views;
 
-<<<<<<< Updated upstream
-=======
 import org.pahappa.systems.ticketing.constants.TicketStatus;
 import org.pahappa.systems.ticketing.models.Ticket;
->>>>>>> Stashed changes
 import org.pahappa.systems.ticketing.services.TicketService;
 import org.pahappa.systems.ticketing.services.impl.TicketServiceImpl;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class TicketView implements BaseTicketView {
@@ -64,13 +60,10 @@ public class TicketView implements BaseTicketView {
         }
     }
 
-
-
     @Override
     public void createTicket() {
+        Ticket ticket = new Ticket();
 
-<<<<<<< Updated upstream
-=======
         System.out.println("Enter the ticket category:");
         String category = scanner.nextLine();
         ticket.setCategory(category);
@@ -102,9 +95,7 @@ public class TicketView implements BaseTicketView {
         ticket.setPriorityLevel(priorityLevel);
 
         ticketService.createTicket(ticket);
->>>>>>> Stashed changes
     }
-
 
     @Override
     public void getAllTickets() {
@@ -123,6 +114,6 @@ public class TicketView implements BaseTicketView {
 
     @Override
     public void deleteTicket() {
-    }
 
+    }
 }
